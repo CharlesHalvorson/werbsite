@@ -1,0 +1,195 @@
+$(document).ready(function () {
+	if ($(".ce-classes.filterable-items").length) {
+	    $('#nameFilterDiv').hide();
+	    $(".filterable-items-filter-1").change(function () {
+    		var newOptions = $(this).find("option:selected").data("options");
+    		$(".filterable-items-filter-2").empty();
+    		$.each(newOptions, function (key, value) {
+    			$(".filterable-items-filter-2").append($("<option></option>").attr("value", key).text(value));
+    		});
+    	});
+    
+    	$(".more-link").on("click", function (e) {
+    		$(this).parent().toggleClass("show-more");
+    	});
+
+		loadMore();
+		filterableItemCount();
+
+		$(".filterable-items-clear").on("click", function (e) {
+			$("select.filterable-items-filter").val("").change();
+			$(".filterable-items-search").val("");
+			$(".filterable-items .filterable-item").removeClass("show");
+			loadMore();
+			filterableItemCount();
+		});
+
+		$(".filterable-items-search").on("keyup", function () {
+			var value = $(".filterable-items-search").val().toLowerCase();
+			checkFilterableItemsSelects();
+			filterableItemsSearch(value);
+			filterableItemCount(true);
+			nameFilterToggle();
+		});
+
+		$(".filterable-items-search").on("keydown", function search(e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+			}
+		});
+
+		$(".filterable-items-filters select.filterable-items-filter").change(function () {
+			var value = $(".filterable-items-search").val().toLowerCase();
+			checkFilterableItemsSelects();
+			filterableItemsSearch(value);
+			filterableItemCount(true);
+			
+		});
+		
+        $("#load-all-btn").on("click", function (e) {
+            $(this).blur();
+            $(".load-more-buttons").hide();
+            $(".filterable-item").removeClass("show").addClass("show");
+        });
+        
+        $("#load-more-btn").on('click', function (e) {
+            e.preventDefault();
+            $(this).blur();
+            $(".filterable-item:hidden").slice(0, 9).addClass("show");
+            filterableItemCount();
+            if ($(".filterable-item:hidden").length == 0) {
+                $(".load-more-buttons").hide();
+            }
+        });
+            
+        $(".load-more-btn").on("click", function (e) {
+           
+        });
+        
+        // Jaina Greenfield 04/16/2026
+        $("select.filterable-items-filter-1,select.filterable-items-filter-2,select.filterable-items-filter-3,select.filterable-items-filter-4").on('change', function(e){
+            nameFilterToggle();
+        });
+        
+		
+		function loadMore(){
+		    $(".filterable-item").slice(0, 9).addClass("show");
+		}
+
+		function filterableItemCount(filter) {
+			$(".filterable-item-count").empty();
+			$(".filterable-item-count1").empty();
+			if(filter){
+			    $(".load-more-buttons").hide();
+			    $(".filterable-item-count").hide();
+			    $(".filterable-item-count1").append($(".filterable-item.show:not([style*='display: none'])").length);
+			}else{
+			    $(".load-more-buttons").show();
+			    $(".filterable-item-count").show();
+			    $(".filterable-item-count").append($(".filterable-item.show:not([style*='display: none'])").length +" of "+ $(".filterable-item").length);
+			    $(".filterable-item-count1").append($(".filterable-item").length);
+			}
+		}
+
+		function filterableItemsSearch(text) {
+		    $(".filterable-items .filterable-item.show").addClass('searchHide').hide();
+		    var regex = new RegExp('\\b' + text.trim() + '\\b');
+		    
+		    $(".filterable-items .filterable-item.show").filter(function(){
+		        return regex.test($(this).text().toLowerCase());
+		    }).each(function(){
+		        $(this).removeClass("searchHide").show();
+		    });
+		    /*
+			$(".filterable-items .filterable-item.show").each(function (i) {
+				if ($(this).text().toLowerCase().indexOf(text.trim()) <= -1) {
+					$(this).addClass("searchHide").hide();
+				} else {
+				    var regex = new RegExp('\\b' + text.trim() + '\\b');
+					$(this).removeClass("searchHide").show();
+				}
+			});*/
+		}
+
+		function checkFilterableItemsSelects() {
+			var filterClass = "";
+			$(".filterable-items .filterable-item").removeClass("show");
+			
+			if ($("select.filterable-items-filter-1").find(":selected").val() != "") {
+			    filterClass = "." + $("select.filterable-items-filter-1").find(":selected").val().toLowerCase().replaceAll(/[\W_]+/g, "") + "-f1" + filterClass;
+			}
+			if ($("select.filterable-items-filter-2").find(":selected").val() != "") {
+			    filterClass = "." + $("select.filterable-items-filter-2").find(":selected").val().toLowerCase().replaceAll(/[\W_]+/g, "") + "-f2" + filterClass;
+			}
+			if ($("select.filterable-items-filter-3").find(":selected").val() != "") {
+			    filterClass = "." + $("select.filterable-items-filter-3").find(":selected").val().toLowerCase().replaceAll(/[\W_]+/g, "") + "-f3" + filterClass;
+			}
+			if ($("select.filterable-items-filter-4").find(":selected").val() != "") {
+			    filterClass = "." + $("select.filterable-items-filter-4").find(":selected").val().toLowerCase().replaceAll(/[\W_]+/g, "") + "-f4" + filterClass;
+			}
+			if($("select.filterable-items-filter-5").length > 0){
+			   if ($("select.filterable-items-filter-5").find(":selected").val() != "") {
+			    filterClass = "." + $("select.filterable-items-filter-5").find(":selected").val().toLowerCase().replaceAll(/[\W_]+/g, "") + "-f5" + filterClass;
+			} 
+			}
+			
+			if (filterClass === "") {
+				$(".filterable-items .filterable-item").addClass("show");
+			} else {
+				$(".filterable-items").find(filterClass).addClass("show").show();
+			}
+		}
+		
+		// Jaina Greenfield 04/16/2026
+		function createClassNameFilterOptions() {
+		    // Get all visible classes from dropdown filters
+		    var visibleClasses = $(".show:not(.searchHide)");
+		    // Get names of those classes
+		    var visibleClassNames = {};
+		    visibleClasses.each(function(){
+		        var title = $(this).find('p.ProgramApp-title a').text();
+		        if(!Object.hasOwn(visibleClassNames, title)){
+		            visibleClassNames[title] = 1;
+		        } else {
+		            visibleClassNames[title] = visibleClassNames[title] + 1;
+		        }
+		    });
+		    var names = Object.getOwnPropertyNames(visibleClassNames);
+		    names.sort();
+		    $('#classNameFilter option').remove();
+		    var nameFilter = document.getElementById('classNameFilter');
+		    var blankOption = new Option('Filtered Classes','');
+		    nameFilter.add(blankOption);
+		    names.forEach((value) =>{
+		        var newOption = new Option(value + " ("+ visibleClassNames[value] +")",value);
+		        nameFilter.add(newOption);
+		    });
+		}
+		
+		function nameFilterToggle(){
+		    var hasFiltered = false;
+            $("select.filterable-items-filter-1,select.filterable-items-filter-2,select.filterable-items-filter-3,select.filterable-items-filter-4").each(function(index){
+                if($(this).val() != ""){
+                    hasFiltered = true;
+                }
+            });
+            if($('#searchFilter').val() != ''){
+                hasFiltered = true;
+            }
+            if(hasFiltered){
+                createClassNameFilterOptions();
+                $('#nameFilterDiv').show().attr('aria-hidden', "false");
+            } else {
+                $('#nameFilterDiv').hide().attr('aria-hidden', "true");;
+            }
+		}
+		
+	}
+	
+	const urlParams = new URLSearchParams(document.location.search);
+    var searchValue = urlParams.get('cesearch');
+    if(searchValue != ''){
+        $('#searchFilter').val(searchValue);
+        $('#searchFilter').trigger('keyup');
+    }
+});

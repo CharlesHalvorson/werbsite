@@ -1,0 +1,271 @@
+ @media only screen and (min-width:893px) {
+     .interior .bc-row-hero {
+         margin-top: 0;
+         margin-bottom: 20px;
+    }
+}
+ header {
+     z-index: 999;
+}
+ .navbar-ce-left {
+     display: inline-block;
+     padding-top: .3125rem;
+     padding-bottom: .3125rem;
+     margin-right: 0rem;
+     font-size: 1.25rem;
+     line-height: inherit;
+     white-space: nowrap;
+     padding: 8px 8px 0 0;
+}
+ .navbar-ce-right {
+     display: inline-block;
+     padding-top: .3125rem;
+     padding-bottom: .3125rem;
+     margin-right: 0rem;
+     font-size: 1.25rem;
+     line-height: inherit;
+     white-space: nowrap;
+     padding: 8px 0 0 8px;
+}
+ .navbar-ce-links li {
+     padding-right: 4px !important;
+     font-size: 1.2em;
+}
+ @media only screen and (min-width: 600px) {
+     .navbar-divider{
+         background: white;
+         width: 1px;
+         height: 60px;
+         display: inline-block;
+         margin-bottom: 15px;
+    }
+     .navbar-ce-left img {
+         padding: 0;
+         margin-right: 0;
+         width: 180px;
+    }
+     .navbar-ce-right img {
+         padding: 0;
+         margin-left: 0;
+         width: 180px;
+    }
+}
+ @media only screen and (max-width: 600px) {
+     .navbar-ce-left img {
+         padding: 0 0 0 0;
+         margin-right: auto;
+         height:auto;
+         width: 130px;
+    }
+     .navbar-ce-right img {
+         padding: 0 0 0 0;
+         margin-right: auto;
+         height:auto;
+         width: 130px;
+    }
+     .navbar-ce-left{
+         border-right: 0px solid white;
+         display:block;
+    }
+     .navbar-ce-right{
+         padding: 0px;
+         display:block;
+    }
+     .navbar-ce {
+         display:block;
+    }
+     .navbar-divider{
+         display:none !important;
+    }
+     .navbar-ce .navbar-brand {
+         padding: 8px 20px 8px 20px;
+    }
+}
+ @media only screen and (max-width: 850px) {
+     .navbar-ce {
+         display:block;
+    }
+}
+ @media only screen and (max-width: 1075px) and (min-width: 975px) {
+     .navbar-ce-left img {
+         padding: 8px;
+         margin-right: auto;
+         height:auto;
+         wiadth: 140px;
+    }
+     .navbar-ce .navbar-brand {
+         background-color: #005399;
+         padding: 12px 20px 12px;
+    }
+     .navbar-ce-right img {
+         padding: 8px;
+         margin-right: auto;
+         height:auto;
+         wiadth: 140px;
+    }
+     .navbar-divider {
+         background: white;
+         width: 1px;
+         height: 50px;
+         display: inline-block;
+         margin-bottom: 6px;
+    }
+     .navbar-ce-links li {
+         padding-right: 4px !important;
+         font-size: 1.1em;
+    }
+}
+ @media only screen and (min-width: 992px) {
+     .navbar-ce .navbar-brand {
+         margin-top: -26px;
+    }
+     .naavbar-ce-links {
+         padding: 8px 8px 0 !important;
+         font-size: 1.3em;
+    }
+     .mainMenu ul > li.nav-item > a.nav-ce-link {
+         padding: 8px 12px 0 12px;
+         font-size: 1.2em;
+    }
+}
+ .content ul li.text-center::before{
+     content: "•";
+     font-size: 50px;
+     position: relative;
+     left: -20px;
+     top: 12px;
+     bottom: 0;
+     color: #005399;
+     line-height: 32px;
+     text-align: center;
+}
+ .content ol li {
+     margin-bottom: 20px;
+     margin-left: 20px;
+     counter-increment: kwood-counter 
+}
+ .content ol li::before{
+     content: counter(kwood-counter) ": ";
+     margin-left: -20px;
+     color: #005399;
+     font-weight: 600;
+}
+ .content ul li{
+     margin-left: 20px;
+     margin-bottom: 20px;
+     list-style: none;
+     position: relative;
+     font-size: 17px;
+}
+ .content ul li a:hover{
+     list-style: none;
+     position: relative;
+     color: #005399;
+     text-decoration: none;
+}
+ .content ul li a :not(aside) :not(nav){
+     text-decoration: underline;
+}
+ .content ul ul li::before {
+     content: "◦";
+     position: absolute;
+     left: -30px;
+     top: -4px;
+     font-size: 35px;
+    /* bottom: 0;
+     */
+     color: #005399;
+     line-height: 32px;
+}
+ .content ul li::before {
+     content: "•";
+     font-size: 40px;
+     position: absolute;
+     left: -20px;
+     top: -4px;
+    /* bottom: 0;
+     */
+     color: #005399;
+     line-height: 32px;
+}
+ .content ul li:first-child {
+     margin-top: 15px;
+}
+ input#searchFilter {
+     height: auto;
+}
+/* CE CLASS SEARCH - FB HH - START */
+ .filterable-items .filterable-item {
+     display: none;
+}
+ .filterable-items .filterable-item.show {
+     display: block;
+}
+ .ce-filters .form-control {
+     height: auto;
+}
+ .ce-filters select.form-control {
+     -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+     background-color: #fafafa;
+     width: 100%;
+     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
+     background-position: 100%;
+     background-repeat: no-repeat;
+     border: 1px solid #ccc;
+     padding: 0.5rem;
+     border-radius: 0;
+}
+ .ce-buttons {
+     max-width: 200px;
+     margin: 0 auto;
+     text-align: center;
+}
+ .ce-classes .ProgramApp-body {
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+}
+ .ce-classes .ProgramApp-body p {
+     font-size: 16px;
+     line-height: 1.5;
+     margin-bottom: 15px;
+}
+ .ce-classes .ProgramApp-body p:last-of-type {
+     margin-bottom: 0;
+}
+ .ce-classes .ProgramApp-body .ProgramApp-title {
+     font-size: 1.1em;
+     line-height: 1;
+     padding: 0;
+}
+ .ce-classes .ProgramApp-body p a span {
+     color: #005399;
+     font-weight: 600;
+}
+ .ce-classes .ProgramApp-body p.more .more-text, .ce-classes .ProgramApp-body p.more .less-link-text, .ce-classes .ProgramApp-body p.more.show-more .more-link-text, .ce-classes .ProgramApp-body p.more.show-more .more-dots{
+     display: none;
+}
+ .ce-classes .ProgramApp-body p.more .more-link-text, .ce-classes .ProgramApp-body p.more.show-more .less-link-text, .ce-classes .ProgramApp-body p.more.show-more .more-text, .ce-classes .ProgramApp-body p.more .more-dots{
+     display: inline;
+}
+ .ce-classes .results{
+     font-size: 1em;
+     line-height: 1em;
+     font-weight: 400;
+}
+ .ce-classes #resultTitle span {
+     color: #003A63;
+}
+ .ce-classes .ProgramApp-body .bottom{
+     margin-top: auto;
+}
+ .ce-classes .load-more-buttons {
+     width:100%;
+     text-align: center;
+}
+ section.row.ce-classes-content.ce-classes-block {
+     margin-bottom: 20px;
+}
+/* CE CLASS SEARCH - FB HH - END */
+ 
